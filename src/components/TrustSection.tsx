@@ -60,6 +60,7 @@ export const TrustSection: React.FC = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showSpeedTest, setShowSpeedTest] = useState(false);
   const totalSlides = Math.ceil(reviews.length / 2); // two per slide on desktop
 
   const prev = () => {
@@ -112,19 +113,19 @@ export const TrustSection: React.FC = () => {
                         {[...Array(r.rating)].map((_, i) => (
                           <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
                         ))}
-                      </div>
+              
                       <p className="italic text-slate-300">“{r.quote}”</p>
-                    </div>
+            
                     <div className="mt-4 text-sm text-slate-400">
                       <p className="font-semibold">{r.name}</p>
                       <p>{r.role}</p>
                       <p className="text-xs opacity-75">{r.date}</p>
-                    </div>
-                  </div>
+            
+          
                 ))}
               </motion.div>
             </AnimatePresence>
-          </div>
+  
 
           {/* Right arrow */}
           <button
@@ -135,7 +136,7 @@ export const TrustSection: React.FC = () => {
           >
             <ChevronRight className="w-5 h-5 text-cyan-400" />
           </button>
-        </div>
+
 
         {/* Pagination dots */}
         <div className="flex justify-center mt-4 space-x-2">
@@ -148,7 +149,7 @@ export const TrustSection: React.FC = () => {
               aria-label={`Go to slide ${i + 1}`}
             />
           ))}
-        </div>
+
 
         {/* CTA button */}
         <div className="mt-8 text-center">
@@ -160,13 +161,56 @@ export const TrustSection: React.FC = () => {
           >
             View all 11 reviews on Google →
           </a>
-        </div>
+
 
         {/* Compliance badges */}
-        <div className="flex justify-center space-x-8 mt-8">
+        {/* Run Speed Test button */}
+        <div className="mt-4 text-center">
+          <button
+            type="button"
+            onClick={() => setShowSpeedTest(true)}
+            className="inline-block px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white font-medium rounded-md"
+          >
+            Run Speed Test
+          </button>
 
 
-        </div>
+        {/* Speed Test Modal */}
+        {showSpeedTest && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black/70 backdrop-blur-md z-50">
+            <div className="bg-slate-800 rounded-lg shadow-lg p-6 max-w-sm w-full text-center">
+              <h3 className="text-lg font-semibold mb-4 text-cyan-400">
+                Choose Speed Test
+              </h3>
+              <a
+                href="https://fast.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full mb-3 px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-md"
+              >
+                Fast.com (Quick Download Test)
+              </a>
+              <a
+                href="https://www.speedtest.net"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-md"
+              >
+                Ookla Speedtest (Full Diagnostic)
+              </a>
+              <button
+                type="button"
+                onClick={() => setShowSpeedTest(false)}
+                className="mt-4 text-sm text-slate-400 hover:text-white"
+              >
+                Close
+              </button>
+    
+  
+        )}
+
+
+
       </div>
     </section>
   );
