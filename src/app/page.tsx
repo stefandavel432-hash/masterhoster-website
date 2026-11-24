@@ -5,7 +5,7 @@ import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ServicesSection } from "@/components/ServicesSection";
-import { SpeedTestGauge } from "@/components/SpeedTestGauge";
+
 import { TrustSection } from "@/components/TrustSection";
 
 import { StatsBar } from "@/components/StatsBar";
@@ -35,7 +35,7 @@ export default function HomePage() {
         <StatsBar />
         <AboutSection />
         <ServicesSection onInquire={() => handleOpenModal(null)} />
-        <SpeedTestGauge />
+        
         <TrustSection />
       </main>
       <Footer onOpenContact={() => handleOpenModal(null)} />
