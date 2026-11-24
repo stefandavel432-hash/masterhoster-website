@@ -35,15 +35,16 @@ export const PricingGrid: React.FC<PricingGridProps> = ({ onOrderPackage }) => {
 
   const renderBadge = (badge?: string) => {
     if (!badge) return null;
-    const colors = {
+    const colors: Record<string, string> = {
       Popular: "from-pink-500 to-purple-500",
       "Best Value": "from-emerald-400 to-cyan-500",
       Fast: "from-yellow-400 to-orange-500",
-    }[badge as keyof typeof colors] as string;
+    };
+    const gradient = colors[badge] || "bg-gradient-to-r from-gray-500 to-gray-700";
     return (
       <div
-        className="absolute -top-2 -right-2 px-3 py-1 text-xs font-bold text-white uppercase tracking-wider bg-gradient-to-r "
-        style={{ backgroundImage: `linear-gradient(to right, ${colors})` }}
+        className="absolute -top-2 -right-2 px-3 py-1 text-xs font-bold text-white uppercase tracking-wider bg-gradient-to-r"
+        style={{ backgroundImage: `linear-gradient(to right, ${gradient})` }}
       >
         {badge.toUpperCase()}
       </div>

@@ -1,10 +1,15 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY as string);
-
 export async function POST(request: Request) {
   try {
+    // Validate RESEND_API_KEY at runtime
+    const apiKey = process.env.RESEND_API_KEY as string | undefined;
+    if (!apiKey) {
+      return NextResponse.json({ error: 'Missing RESEND_API_KEY' }, { status: 500 });
+    }
+    const resend = new Resend(apiKey);
+
     const data = await request.json();
 
     // Honeypot field – if filled, silently succeed
@@ -25,7 +30,7 @@ export async function POST(request: Request) {
       from: 'no-reply@masterhoster.co.za',
       to: process.env.CONTACT_TO_EMAIL as string,
       subject: `New Inquiry from ${name}`,
-      reply_to: email || undefined,
+      replyTo: email || undefined,
       text: emailContent,
     });
 
