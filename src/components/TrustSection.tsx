@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
-export function TrustSection() {
+export default function TrustSection() {
   const [showSpeedTest, setShowSpeedTest] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -52,7 +52,9 @@ export function TrustSection() {
       <div className="max-w-6xl mx-auto px-4">
         {/* Speed Test Header & Trigger */}
         <div className="text-center mb-12">
-          <h3 className="text-xl font-semibold text-cyan-400 mb-4">Speed Test Gauge</h3>
+          <h3 className="text-xl font-semibold text-cyan-400 mb-4">
+            Speed Test Gauge
+          </h3>
           <button
             onClick={() => setShowSpeedTest(true)}
             className="bg-cyan-600 hover:bg-cyan-500 text-white font-medium px-6 py-2.5 rounded-md transition shadow-md"
@@ -100,8 +102,9 @@ export function TrustSection() {
         {/* Reviews Section Container */}
         <div className="bg-slate-950/60 border border-slate-800 rounded-2xl p-8 relative">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-cyan-400 mb-8">
-            Trusted by Businesses & Communities
+            Trusted by Businesses &amp; Communities
           </h2>
+
           <div className="relative px-8">
             <button
               onClick={prevSlide}
@@ -110,6 +113,7 @@ export function TrustSection() {
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {visible.map((r) => (
                 <div
@@ -163,5 +167,3 @@ export function TrustSection() {
     </section>
   );
 }
-
-export default TrustSection;
