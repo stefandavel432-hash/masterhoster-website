@@ -114,7 +114,7 @@ export const TrustSection: React.FC = () => {
                           <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
                         ))
               
-                      <p className="italic text-slate-300">“{r.quote}”</p>
+                      <p className="italic text-slate-300">&quot;{r.quote}&quot;</p>
             
                     <div className="mt-4 text-sm text-slate-400">
                       <p className="font-semibold">{r.name}</p>
