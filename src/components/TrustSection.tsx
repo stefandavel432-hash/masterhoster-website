@@ -153,7 +153,7 @@ export const TrustSection: React.FC = () => {
         {/* CTA button */}
         <div className="mt-8 text-center">
           <a
-            href="https://www.google.com/maps/place/MasterHoster+Reviews" // placeholder URL
+            href="https://www.google.com/search?q=masterhoster"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white font-medium rounded-md"
@@ -164,8 +164,8 @@ export const TrustSection: React.FC = () => {
 
         {/* Compliance badges */}
         <div className="flex justify-center space-x-8 mt-8">
-          <img src="/placeholder-icasa-badge.png" alt="ICASA ECNS/ECS License" className="h-12" onError={(e)=>{(e.currentTarget as HTMLImageElement).style.display='none';}} />
-          <img src="/placeholder-ispa-seal.png" alt="ISPA Code of Conduct" className="h-12" />
+
+
         </div>
       </div>
     </section>
