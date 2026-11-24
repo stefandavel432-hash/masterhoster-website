@@ -112,7 +112,7 @@ export const TrustSection: React.FC = () => {
                       <div className="flex items-center mb-2">
                         {[...Array(r.rating)].map((_, i) => (
                           <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                        ))}
+                        ))
               
                       <p className="italic text-slate-300">“{r.quote}”</p>
             
