@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 
 export interface FooterProps {
   onOpenContact?: () => void;
@@ -9,12 +9,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
 
   return (
     <footer className="bg-slate-950 text-slate-300 border-t border-slate-800 pt-12 pb-6 overflow-x-hidden">
-      {/* Main 4‑column layout */}
+      {/* Main 4â€‘column layout */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {/* Column 1 – Brand */}
+        {/* Column 1 â€“ Brand */}
         <div>
-          <div className="flex items-center space-x-2 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-8 w-8 text-cyan-400" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <div className="flex items-center gap-2.5 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-8 w-8 text-cyan-400 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="3" />
               <path d="M12 2v4" />
               <path d="M12 18v4" />
@@ -23,19 +23,25 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
               <path d="M2 12h4" />
               <path d="M18 12h4" />
             </svg>
-            <span className="text-xl font-bold text-white ml-2">MasterHoster</span>
-            <span className="block text-sm text-cyan-400">YOUR WIFI &amp; IT SPECIALISTS</span>
+            <span className="flex flex-col leading-tight">
+              <span className="text-xl font-bold tracking-tight text-white">MasterHoster</span>
+              <span className="text-[11px] font-semibold tracking-wider uppercase text-cyan-400">YOUR WIFI &amp; IT SPECIALISTS</span>
+            </span>
           </div>
-          <p className="mb-3 text-sm">Your WiFi &amp; IT Specialists</p>
-          <p className="text-xs font-medium">Serving:</p>
-          <ul className="text-xs mt-1 space-y-0.5">
-            <li>- Heidelberg</li>
+          <p className="text-xs font-medium text-slate-300">Serving:</p>
+          <ul className="text-xs mt-1 space-y-0.5 text-slate-400">
             <li>- Balfour</li>
-            <li>- Surrounds</li>
+            <li>- Heidelberg</li>
+            <li>- Nigel</li>
+            <li>- Grootvlei</li>
+            <li>- Greylingstad</li>
+            <li>- Vaal</li>
+            <li>- Vaal Marina</li>
+            <li>- Vereeniging &amp; surrounds</li>
           </ul>
         </div>
 
-        {/* Column 2 – Quick Navigation */}
+        {/* Column 2 â€“ Quick Navigation */}
         <div>
           <h4 className="text-sm font-semibold mb-3 text-slate-200">Quick Links</h4>
           <ul className="space-y-1 text-xs">
@@ -46,7 +52,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
           </ul>
         </div>
 
-        {/* Column 3 – Legal & Regulatory */}
+        {/* Column 3 â€“ Legal & Regulatory */}
         <div>
           <h4 className="text-sm font-semibold mb-3 text-slate-200">Legal &amp; Regulatory</h4>
           <ul className="space-y-1 text-xs">
@@ -57,7 +63,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
           </ul>
         </div>
 
-        {/* Column 4 – Support & Contact */}
+        {/* Column 4 â€“ Support & Contact */}
         <div>
           <h4 className="text-sm font-semibold mb-3 text-slate-200">Support &amp; Contact</h4>
           <button
@@ -82,7 +88,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
           <p className="text-xs mb-2">
             Phone: <a href="tel:+27 60 980 0668" className="underline hover:text-cyan-300">+27 60 980 0668</a>
           </p>
-          <a href="/support/emergency" className="text-xs text-cyan-400 hover:text-cyan-300 underline">Emergency Coverage Inquiry →</a>
+          <a href="/support/emergency" className="text-xs text-cyan-400 hover:text-cyan-300 underline">Emergency Coverage Inquiry â†’</a>
         </div>
       </div>
 
@@ -91,19 +97,20 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
         Providing Uncapped Fibre, Wireless &amp; IT Solutions across Heidelberg, Balfour &amp; Surrounds.
       </div>
 
-      {/* Regulatory sub‑bar */}
+      {/* Regulatory subâ€‘bar */}
       <div className="border-t border-slate-800 mt-8 pt-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-400">
-          100% Licensed Network Infrastructure — Operating under ICASA ECNS/ECS Framework | ISPA Code of Conduct Compliant
+          100% Licensed Network Infrastructure â€” Operating under ICASA ECNS/ECS Framework | ISPA Code of Conduct Compliant
         </div>
       </div>
 
       {/* Copyright line */}
       <div className="mt-4 text-center text-xs text-slate-500">
-        © {currentYear} MasterHoster. All rights reserved.
+        Â© {currentYear} MasterHoster. All rights reserved.
       </div>
     </footer>
   );
 };
 
 export default Footer;
+

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from "react";
 import Link from "next/link";
@@ -17,19 +17,21 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact }) => {
   return (
     <header className="sticky top-0 z-50 w-full bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center space-x-2 text-white" aria-label="MasterHoster - Your WiFi & IT Specialists">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-8 w-8 text-cyan-400" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="3" />
-    <path d="M12 2v4" />
-    <path d="M12 18v4" />
-    <path d="M4.93 4.93l2.83 2.83" />
-    <path d="M16.24 16.24l2.83 2.83" />
-    <path d="M2 12h4" />
-    <path d="M18 12h4" />
-  </svg>
-  <span className="text-xl font-bold text-white ml-2">MasterHoster</span>
-  <span className="block text-sm text-cyan-400">YOUR WIFI &amp; IT SPECIALISTS</span>
-</Link>
+        <Link href="/" className="flex items-center gap-2.5 text-white shrink-0 whitespace-nowrap" aria-label="MasterHoster - Your WiFi & IT Specialists">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-8 w-8 text-cyan-400 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M12 2v4" />
+            <path d="M12 18v4" />
+            <path d="M4.93 4.93l2.83 2.83" />
+            <path d="M16.24 16.24l2.83 2.83" />
+            <path d="M2 12h4" />
+            <path d="M18 12h4" />
+          </svg>
+          <span className="flex flex-col leading-tight">
+            <span className="text-lg sm:text-xl font-bold tracking-tight text-white">MasterHoster</span>
+            <span className="text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase text-cyan-400">YOUR WIFI &amp; IT SPECIALISTS</span>
+          </span>
+        </Link>
         <div className="flex items-center space-x-4">
           {/* Hamburger */}
           <button
@@ -61,17 +63,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact }) => {
           </button>
         </div>
       </div>
-      {menuOpen && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 flex flex-col items-center pt-20 transition-opacity duration-300 ease-in-out">
-          <nav className="flex flex-col space-y-4 text-xl text-white">
-            <Link href="/packages" onClick={toggleMenu} className="hover:text-cyan-400">Packages</Link>
-            <Link href="/speed-test" onClick={toggleMenu} className="hover:text-cyan-400">Speed Test</Link>
-            <Link href="/about" onClick={toggleMenu} className="hover:text-cyan-400">About</Link>
-            <button onClick={handleViewPackages} className="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 rounded-md">View Packages</button>
-            <button onClick={() => { if (onOpenContact) onOpenContact(); }} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-md">Contact Us</button>
-          </nav>
-        </div>
-      )}
     </header>
   );
 };
+
+export default Header;
