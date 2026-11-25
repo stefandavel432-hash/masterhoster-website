@@ -1,31 +1,18 @@
-import React, { useState, FormEvent } from "react";
-import { X, CheckCircle } from "lucide-react"; // assumes lucide-react is installed
-import { motion, AnimatePresence } from "framer-motion";
-import { Package } from "@/data/packages";
+﻿'use client';
 
-/**
- * Props for the OrderModal component.
- */
-interface OrderModalProps {
-  /** Whether the modal is visible */
+import React, { useState } from "react";
+
+export interface OrderModalProps {
   isOpen: boolean;
-  /** Callback to close the modal */
   onClose: () => void;
-  /** The package the user is ordering – optional */
-  selectedPackage?: Package | null;
+  selectedPackage?: string;
 }
 
-/**
- * OrderModal – self‑contained modal dialog for ordering a package or
- * requesting a coverage / site‑survey inquiry.
- * Includes its own form state, simple validation, and a success animation.
- */
 export const OrderModal: React.FC<OrderModalProps> = ({
   isOpen,
   onClose,
-  selectedPackage = null,
+  selectedPackage,
 }) => {
-  // Form fields state
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -33,227 +20,144 @@ export const OrderModal: React.FC<OrderModalProps> = ({
   const [address, setAddress] = useState("");
   const [notes, setNotes] = useState("");
 
-  // Submission / success state
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  // Simple validation – for demo purposes just ensure required fields are non‑empty
-  const isValid =
-    fullName.trim() !== "" && phone.trim() !== "" && email.trim() !== "" && town !== "" && address.trim() !== "";
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!isValid) return;
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: fullName,
-          email,
-          phone,
-          town,
-          serviceOrPackage: selectedPackage ? `${selectedPackage.speedMbps} Mbps ${selectedPackage.lineType}` : 'General Inquiry',
-          message: notes,
-          website_confirm: '',
-        }),
-      });
-      if (!response.ok) throw new Error('Network response was not ok');
-      setSubmitted(true);
-    } catch (err) {
-      setError('Failed to send inquiry. Please try again later.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Reset on close
-  const handleClose = () => {
-    // Reset internal state when the modal is closed
-    setFullName("");
-    setPhone("");
-    setEmail("");
-    setTown("");
-    setAddress("");
-    setNotes("");
-    setSubmitted(false);
-    onClose();
-  };
+  if (!isOpen) return null;
 
   const towns = [
     "Balfour",
-    "Greylingstad",
-    "Grootvlei",
-    "Vaal",
-    "Nigel",
     "Heidelberg",
-  ] as const;
+    "Nigel",
+    "Grootvlei",
+    "Greylingstad",
+    "Vaal",
+    "Vaal Marina",
+    "Vereeniging",
+    "Other / Surrounds",
+  ];
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const textMessage = `Hi MasterHoster,\n\nI'd like to request coverage / site survey.\n\n*Name:* ${fullName}\n*Phone:* ${phone}\n*Email:* ${email}\n*Town:* ${town || 'Not specified'}\n*Address:* ${address}\n${selectedPackage ? `*Package:* ${selectedPackage}\n` : ''}${notes ? `*Notes:* ${notes}` : ''}`;
+
+    const whatsappUrl = `https://wa.me/27609800668?text=${encodeURIComponent(textMessage)}`;
+    
+    window.open(whatsappUrl, "_blank");
+    onClose();
+  };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          className="bg-slate-950/80 backdrop-blur-md flex items-center justify-center fixed inset-0 z-50 p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+      <div className="relative w-full max-w-lg rounded-xl border border-slate-800 bg-slate-900 p-6 shadow-2xl text-slate-100">
+        <button
+          onClick={onClose}
+          className="absolute right-4 top-4 text-slate-400 hover:text-white text-lg font-bold"
+          aria-label="Close"
         >
-          <motion.div
-            className="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 text-white relative shadow-2xl"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-          >
-            {/* Close button */}
-            <button
-              onClick={handleClose}
-              className="absolute top-3 right-3 text-gray-400 hover:text-white"
-              aria-label="Close"
+          &times;
+        </button>
+
+        <h3 className="text-xl font-bold text-white mb-4 text-center">
+          Request Coverage / General Inquiry
+        </h3>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 mb-1">
+              Full Name *
+            </label>
+            <input
+              type="text"
+              required
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              placeholder="e.g. Stefan"
+              className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-md text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 mb-1">
+              Phone / WhatsApp Number *
+            </label>
+            <input
+              type="tel"
+              required
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="e.g. 082 000 0000"
+              className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-md text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 mb-1">
+              Email Address *
+            </label>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="e.g. yourname@domain.co.za"
+              className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-md text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 mb-1">
+              Town *
+            </label>
+            <select
+              required
+              value={town}
+              onChange={(e) => setTown(e.target.value)}
+              className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-md text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm"
             >
-              <X size={20} />
-            </button>
+              <option value="">-- Select Town --</option>
+              {towns.map((t) => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
+            </select>
+          </div>
 
-            {/* Header / package summary */}
-            <h2 className="text-xl font-semibold mb-4 text-center">
-              {selectedPackage ? (
-                <span>
-                  Signing up for: {selectedPackage.speedMbps} Mbps {selectedPackage.lineType} Line @ R {selectedPackage.priceR}/mo
-                </span>
-              ) : (
-                "Request Coverage / General Inquiry"
-              )}
-            </h2>
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 mb-1">
+              Street / Farm Address
+            </label>
+            <input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="e.g. 123 Main Street / Farm Name"
+              className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-md text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm"
+            />
+          </div>
 
-            {/* Success animation */}
-            <AnimatePresence>
-              {submitted ? (
-                <motion.div
-                  className="flex flex-col items-center space-y-4"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                >
-                  <CheckCircle className="w-16 h-16 text-cyan-400" />
-                  <p className="text-center text-lg font-medium">
-                    Thank you! The MasterHoster team will contact you shortly to confirm coverage and schedule installation.
-                  </p>
-                  <button
-                    onClick={handleClose}
-                    className="mt-4 px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-md"
-                  >
-                    Close
-                  </button>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  {/* Full Name */}
-                  <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="fullName">
-                      Full Name
-                    </label>
-                    <input
-                      id="fullName"
-                      type="text"
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                      className="w-full px-3 py-2 rounded bg-slate-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
-                      required
-                    />
-                  </div>
-                  {/* Phone */}
-                  <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="phone">
-                      Phone / WhatsApp Number
-                    </label>
-                    <input
-                      id="phone"
-                      type="text"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className="w-full px-3 py-2 rounded bg-slate-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
-                      required
-                    />
-                  </div>
-                  {/* Email */}
-                  <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="email">
-                      Email Address
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-3 py-2 rounded bg-slate-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
-                      required
-                    />
-                  </div>
-                  {/* Town selector */}
-                  <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="town">
-                      Town
-                    </label>
-                    <select
-                      id="town"
-                      value={town}
-                      onChange={(e) => setTown(e.target.value)}
-                      className="w-full px-3 py-2 rounded bg-slate-800 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                      required
-                    >
-                      <option value="" disabled>
-                        -- Select Town --
-                      </option>
-                      {towns.map((t) => (
-                        <option key={t} value={t}>
-                          {t}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  {/* Address */}
-                  <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="address">
-                      Street / Farm Address
-                    </label>
-                    <input
-                      id="address"
-                      type="text"
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
-                      className="w-full px-3 py-2 rounded bg-slate-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
-                      required
-                    />
-                  </div>
-                  {/* Additional notes */}
-                  <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="notes">
-                      Additional Notes
-                    </label>
-                    <textarea
-                      id="notes"
-                      rows={3}
-                      value={notes}
-                      onChange={(e) => setNotes(e.target.value)}
-                      className="w-full px-3 py-2 rounded bg-slate-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
-                    />
-                  </div>
-                  {/* Submit button */}
-                  <button
-                    type="submit"
-                    disabled={!isValid}
-                    className="w-full mt-2 px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold rounded-md shadow-lg transition-all disabled:opacity-50"
-                  >
-                    Submit Application / Site Survey Request
-                  </button>
-                </form>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 mb-1">
+              Additional Notes
+            </label>
+            <textarea
+              rows={3}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              placeholder="Any specific requirements or questions..."
+              className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-md text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm resize-none"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-3 px-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold rounded-md shadow transition-colors text-sm"
+          >
+            Submit Application / Site Survey Request
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
+
+export default OrderModal;
