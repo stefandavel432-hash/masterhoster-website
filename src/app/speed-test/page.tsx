@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 import Header from "@/components/Header";
-import SpeedTestSection from "@/components/SpeedTestSection";
+import { SpeedTestSection } from "@/components/SpeedTestSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import OrderModal from "@/components/OrderModal";
+import { OrderModal } from "@/components/OrderModal";
 
 export default function SpeedTestPage() {
   const [contactOpen, setContactOpen] = useState(false);
