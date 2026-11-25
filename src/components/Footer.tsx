@@ -74,13 +74,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
             Contact Us
           </button>
           <p className="text-xs mb-2">
-            Email: <a href="mailto:support@masterhoster.co.za" className="underline hover:text-white">support@masterhoster.co.za</a>
+            Email: <a href="mailto:accounts@masterhoster.co.za" className="underline hover:text-white">accounts@masterhoster.co.za</a>
           </p>
           <p className="text-xs mb-2">
-            WhatsApp: <a href="https://wa.me/27820000000" target="_blank" rel="noopener noreferrer" className="underline hover:text-cyan-300">Chat Now</a>
+            WhatsApp: <a href="https://wa.me/27609800668?text=Hi%20MasterHoster%2C%20I%27d%20like%20to%20inquire%20about%20internet%20coverage%20and%20packages." target="_blank" rel="noopener noreferrer" className="underline hover:text-cyan-300">Chat Now</a>
           </p>
           <p className="text-xs mb-2">
-            Phone: <a href="tel:+27820000000" className="underline hover:text-cyan-300">+27 82 000 0000</a>
+            Phone: <a href="tel:+27 60 980 0668" className="underline hover:text-cyan-300">+27 60 980 0668</a>
           </p>
           <a href="/support/emergency" className="text-xs text-cyan-400 hover:text-cyan-300 underline">Emergency Coverage Inquiry →</a>
         </div>
