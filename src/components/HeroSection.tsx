@@ -34,7 +34,7 @@ export function HeroSection({ onOpenContact }: { onOpenContact: () => void }) {
       <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center space-x-2">
         <span className={clsx("block w-3 h-3 rounded-full bg-green-500", "animate-pulse")} />
         <span className="text-sm font-medium">
-          Network Status: 100% Operational across Balfour &amp; Heidelberg
+          Network Status: 100% Operational across Balfour, Heidelberg &amp; Surrounds
         </span>
       </div>
 

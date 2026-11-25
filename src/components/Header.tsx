@@ -43,13 +43,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact }) => {
             <Link href="/speed-test" className="hover:text-white">Speed Test</Link>
             <Link href="/about" className="hover:text-white">About</Link>
           </nav>
-          <button
-            type="button"
-            onClick={handleViewPackages}
-            className="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-md text-sm font-medium"
-          >
-            View Packages
-          </button>
+          
           <button
             type="button"
             onClick={() => { if (onOpenContact) onOpenContact(); }}
