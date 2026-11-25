@@ -2,7 +2,7 @@
 
 export function WhatsAppButton() {
   const whatsappLink =
-    "https://wa.me/27XXXXXXXXX?text=Hi%20MasterHoster%2C%20I%27d%20like%20to%20inquire%20about%20internet%20coverage%20and%20packages.";
+    "https://wa.me/27609800668?text=Hi%20MasterHoster%2C%20I%27d%20like%20to%20inquire%20about%20internet%20coverage%20and%20packages.";
 
   return (
     <a
