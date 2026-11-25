@@ -6,7 +6,7 @@ import React from "react";
 export const StatsBar: React.FC = () => {
   const metrics = [
     { label: "99.9% Uptime Guarantee" },
-    { label: "6 Towns Covered (Balfour, Heidelberg, Nigel, Greylingstad, Grootvlei, Vaal)" },
+    { label: "Serving Balfour, Heidelberg, Nigel, Grootvlei, Greylingstad, Vaal, Vaal Marina, Vereeniging & Surrounds" },
     { label: "< 15ms Average Local Latency" },
     { label: "Same‑Day On‑Site Support" },
   ];

@@ -55,7 +55,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onInquire }) =
       title: "IT Solutions & Support",
       Icon: Server,
       summary:
-        "On‑site network cabling & router config, firewall & security audits, hardware maintenance, local technician dispatch across Balfour & Heidelberg.",
+        "On‑site network cabling & router config, firewall & security audits, hardware maintenance, local technician dispatch across Balfour, Heidelberg & Surrounds.",
       features: [
         "On‑site network cabling & router configuration",
         "Firewall & security audits",
