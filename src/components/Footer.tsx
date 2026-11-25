@@ -14,8 +14,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
         {/* Column 1 – Brand */}
         <div>
           <div className="flex items-center space-x-2 mb-4">
-            <span className="text-2xl font-bold text-cyan-400">🛰️</span>
-            <span className="text-2xl font-bold">MasterHoster</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-8 w-8 text-cyan-400" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M12 2v4" />
+              <path d="M12 18v4" />
+              <path d="M4.93 4.93l2.83 2.83" />
+              <path d="M16.24 16.24l2.83 2.83" />
+              <path d="M2 12h4" />
+              <path d="M18 12h4" />
+            </svg>
+            <span className="text-xl font-bold uppercase text-cyan-400">YOUR WIFI &amp; IT SPECIALISTS</span>
           </div>
           <p className="mb-3 text-sm">Your WiFi &amp; IT Specialists</p>
           <p className="text-xs font-medium">Serving:</p>

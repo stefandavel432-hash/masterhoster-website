@@ -338,7 +338,8 @@ self.__SERVER_FILES_MANIFEST={
     "turbopack": {
       "root": "C:\\Users\\stefa\\OneDrive\\Desktop\\Masterhoster Website"
     },
-    "distDirRoot": "build"
+    "distDirRoot": "build",
+    "supportsImmutableAssets": false
   },
   "appDir": "C:\\Users\\stefa\\OneDrive\\Desktop\\Masterhoster Website",
   "relativeAppDir": "",
@@ -352,6 +353,8 @@ self.__SERVER_FILES_MANIFEST={
     "build\\server\\functions-config-manifest.json",
     "build\\server\\middleware-manifest.json",
     "build\\server\\middleware-build-manifest.js",
+    "build\\server\\middleware-react-loadable-manifest.js",
+    "build\\react-loadable-manifest.json",
     "build\\server\\app-paths-manifest.json",
     "build\\app-path-routes-manifest.json",
     "build\\server\\server-reference-manifest.js",
