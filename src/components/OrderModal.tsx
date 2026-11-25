@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from "react";
 
@@ -37,11 +37,29 @@ export const OrderModal: React.FC<OrderModalProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const textMessage = `Hi MasterHoster,\n\nI'd like to request coverage / site survey.\n\n*Name:* ${fullName}\n*Phone:* ${phone}\n*Email:* ${email}\n*Town:* ${town || 'Not specified'}\n*Address:* ${address}\n${selectedPackage ? `*Package:* ${selectedPackage}\n` : ''}${notes ? `*Notes:* ${notes}` : ''}`;
+    const packageName = selectedPackage
+      ? typeof selectedPackage === "string"
+        ? selectedPackage
+        : selectedPackage.name || selectedPackage.title || selectedPackage.id || "Selected Package"
+      : "";
 
-    const whatsappUrl = `https://wa.me/27609800668?text=${encodeURIComponent(textMessage)}`;
+    const subject = `Coverage Request / Inquiry - ${fullName} (${town || 'General'})`;
     
-    window.open(whatsappUrl, "_blank");
+    const bodyLines = [
+      `MasterHoster Coverage & Site Survey Request`,
+      `-------------------------------------------`,
+      `Full Name: ${fullName}`,
+      `Phone / WhatsApp: ${phone}`,
+      `Email: ${email}`,
+      `Town: ${town || 'Not specified'}`,
+      `Address: ${address || 'N/A'}`,
+      packageName ? `Package: ${packageName}` : "",
+      notes ? `Additional Notes: ${notes}` : "",
+    ].filter(Boolean).join("\n");
+
+    const mailtoUrl = `mailto:accounts@masterhoster.co.za?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines)}`;
+    
+    window.location.href = mailtoUrl;
     onClose();
   };
 
@@ -152,7 +170,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
             type="submit"
             className="w-full py-3 px-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold rounded-md shadow transition-colors text-sm"
           >
-            Submit Application / Site Survey Request
+            Send Email Request
           </button>
         </form>
       </div>
