@@ -27,7 +27,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact }) => {
     <path d="M2 12h4" />
     <path d="M18 12h4" />
   </svg>
-  <span className="text-xl font-bold uppercase text-cyan-400">YOUR WIFI &amp; IT SPECIALISTS</span>
+  <span className="text-xl font-bold text-white ml-2">MasterHoster</span>
+  <span className="block text-sm text-cyan-400">YOUR WIFI &amp; IT SPECIALISTS</span>
 </Link>
         <div className="flex items-center space-x-4">
           {/* Hamburger */}

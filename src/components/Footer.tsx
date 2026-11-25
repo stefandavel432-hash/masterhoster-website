@@ -23,7 +23,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
               <path d="M2 12h4" />
               <path d="M18 12h4" />
             </svg>
-            <span className="text-xl font-bold uppercase text-cyan-400">YOUR WIFI &amp; IT SPECIALISTS</span>
+            <span className="text-xl font-bold text-white ml-2">MasterHoster</span>
+            <span className="block text-sm text-cyan-400">YOUR WIFI &amp; IT SPECIALISTS</span>
           </div>
           <p className="mb-3 text-sm">Your WiFi &amp; IT Specialists</p>
           <p className="text-xs font-medium">Serving:</p>
