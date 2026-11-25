@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 
 export interface FooterProps {
   onOpenContact?: () => void;
@@ -14,15 +14,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
         {/* Column 1 â€“ Brand */}
         <div>
           <div className="flex items-center gap-2.5 mb-3">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-8 w-8 text-cyan-400 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="3" />
-              <path d="M12 2v4" />
-              <path d="M12 18v4" />
-              <path d="M4.93 4.93l2.83 2.83" />
-              <path d="M16.24 16.24l2.83 2.83" />
-              <path d="M2 12h4" />
-              <path d="M18 12h4" />
-            </svg>
+            <img src="/mh-logo-mark.jpg" alt="MasterHoster logo" className="h-9 w-9 rounded-lg object-cover shrink-0" />
             <span className="flex flex-col leading-tight">
               <span className="text-xl font-bold tracking-tight text-white">MasterHoster</span>
               <span className="text-[11px] font-semibold tracking-wider uppercase text-cyan-400">YOUR WIFI &amp; IT SPECIALISTS</span>
@@ -88,7 +80,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
           <p className="text-xs mb-2">
             Phone: <a href="tel:+27 60 980 0668" className="underline hover:text-cyan-300">+27 60 980 0668</a>
           </p>
-          <a href="/support/emergency" className="text-xs text-cyan-400 hover:text-cyan-300 underline">Emergency Coverage Inquiry â†’</a>
+          <a href="/support/emergency" className="text-xs text-cyan-400 hover:text-cyan-300 underline">Emergency Coverage Inquiry →</a>
         </div>
       </div>
 
