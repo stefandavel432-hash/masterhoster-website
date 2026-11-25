@@ -1,11 +1,11 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from "react";
 
 export interface OrderModalProps {
   isOpen: boolean;
   onClose: () => void;
-  selectedPackage?: string;
+  selectedPackage?: any;
 }
 
 export const OrderModal: React.FC<OrderModalProps> = ({
